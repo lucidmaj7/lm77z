@@ -23,8 +23,8 @@ EXTERN_C
 #define LM77Z_API
 #endif
 	//
-	int LM77Z_API LM77Z_Archive_Load7z(const PWCHAR pszArchiveFilePath, const PWCHAR* pPathArr, DWORD dwPathLen, DWORD dwPathCount, LPCTSTR lp7zDllPath);
-	int LM77Z_API LM77Z_Archive(const PWCHAR pszArchiveFilePath, const PWCHAR* pPathArr, DWORD dwPathLen, DWORD dwPathCount);
+	int LM77Z_API LM77Z_Archive_Load7z(const PWCHAR pszArchiveFilePath, const PWCHAR * pPathArr, DWORD dwPathLen, DWORD dwPathCount, LPCTSTR lp7zDllPath , BOOL isUTF8);
+	int LM77Z_API LM77Z_Archive(const PWCHAR pszArchiveFilePath, const PWCHAR* pPathArr, DWORD dwPathLen, DWORD dwPathCount, BOOL isUTF8);
 	int LM77Z_API LM77Z_eXtract(const PWCHAR pszArchiveFilePath, const PWCHAR szExtractPath);
 #ifdef __cplusplus
 }

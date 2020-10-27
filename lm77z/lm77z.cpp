@@ -936,7 +936,8 @@ int LM77Z_API LM77Z_eXtract(const PWCHAR pszArchiveFilePath, const PWCHAR szExtr
 	return 0;
 }
 
-int LM77Z_API LM77Z_Archive(const PWCHAR pszArchiveFilePath, const PWCHAR* pPathArr, DWORD dwPathLen, DWORD dwPathCount)
+
+int LM77Z_API LM77Z_Archive(const PWCHAR pszArchiveFilePath, const PWCHAR* pPathArr, DWORD dwPathLen, DWORD dwPathCount , BOOL isUTF8)
 {
 	if (!pPathArr || !pszArchiveFilePath || dwPathLen == 0 || dwPathCount == 0 )
 	{
@@ -989,8 +990,13 @@ int LM77Z_API LM77Z_Archive(const PWCHAR pszArchiveFilePath, const PWCHAR* pPath
 			di.Size = fi.Size;
 			di.CTime = fi.CTime;
 			di.ATime = fi.ATime;
-			di.MTime = fi.MTime;
-			di.Name = fs2us(PathFindFileName(pPathArr[i]));
+			if (isUTF8)
+			{
+				di.Name = UnicodeStringToMultiByte(fs2us(PathFindFileName(pPathArr[i]), CP_UTF8));
+			}
+			else
+				di.Name = fs2us(PathFindFileName(pPathArr[i]));
+
 			di.FullPath = name;
 			dirItems.Add(di);
 		}
@@ -1046,7 +1052,7 @@ int LM77Z_API LM77Z_Archive(const PWCHAR pszArchiveFilePath, const PWCHAR* pPath
 	return 0;
 }
 
-int LM77Z_API LM77Z_Archive_Load7z(const PWCHAR pszArchiveFilePath, const PWCHAR* pPathArr, DWORD dwPathLen, DWORD dwPathCount, LPCTSTR lp7zDllPath)
+int LM77Z_API LM77Z_Archive_Load7z(const PWCHAR pszArchiveFilePath, const PWCHAR* pPathArr, DWORD dwPathLen, DWORD dwPathCount, LPCTSTR lp7zDllPath , BOOL isUTF8)
 {
 	if (plib.IsLoaded() == FALSE)
 	{
@@ -1056,6 +1062,6 @@ int LM77Z_API LM77Z_Archive_Load7z(const PWCHAR pszArchiveFilePath, const PWCHAR
 		}
 	}
 
-	return LM77Z_Archive(pszArchiveFilePath, pPathArr, dwPathLen, dwPathCount);
+	return LM77Z_Archive(pszArchiveFilePath, pPathArr, dwPathLen, dwPathCount, isUTF8);
 }
 

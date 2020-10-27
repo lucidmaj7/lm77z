@@ -178,8 +178,8 @@ void CTESTDlg::OnBnClickedButton2()
 void CTESTDlg::OnBnClickedButton1()
 {
 	// TODO: Add your control notification handler code here
-	CString strAchivePath = _T("d:\\aa11.7z");
-	CString strPath = _T("C:\\Users\\lucidmaj7\\Downloads\\openssl-1.0.2m.tar\\openssl-1.0.2m");
+	CString strAchivePath = _T("d:\\aa1122.tar");
+	CString strPath = _T("d:\\test2");
 	CString strPat2h = _T("D:\\test");
 	WCHAR path[MAX_PATH] = { 0, };
 	WCHAR path2[MAX_PATH] = { 0, };
@@ -188,7 +188,7 @@ void CTESTDlg::OnBnClickedButton1()
 	aPath[1] = path2;
 	swprintf_s(aPath[0], MAX_PATH, L"%s", strPath);
 	swprintf_s(aPath[1], MAX_PATH, L"%s", strPat2h);
-	if (LM77Z_Archive(strAchivePath.GetBuffer(0), aPath, MAX_PATH, 2) == 0)
+	if (LM77Z_Archive(strAchivePath.GetBuffer(0), aPath, MAX_PATH, 2,TRUE) == 0)
 	{
 		AfxMessageBox(_T("Success!!!"));
 	}
