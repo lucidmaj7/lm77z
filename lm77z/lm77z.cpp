@@ -990,6 +990,7 @@ int LM77Z_API LM77Z_Archive(const PWCHAR pszArchiveFilePath, const PWCHAR* pPath
 			di.Size = fi.Size;
 			di.CTime = fi.CTime;
 			di.ATime = fi.ATime;
+			di.MTime = fi.MTime;
 			if (isUTF8)
 			{
 				di.Name = UnicodeStringToMultiByte(fs2us(PathFindFileName(pPathArr[i]), CP_UTF8));
